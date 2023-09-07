@@ -1,0 +1,43 @@
+create database demo;
+
+use demo;
+
+CREATE TABLE department(
+dep_id INT PRIMARY KEY,
+dep_name VARCHAR(20));
+
+CREATE TABLE employee(
+emp_id INT PRIMARY KEY,
+emp_name VARCHAR(10) NOT NULL,
+emp_adhaar VARCHAR(16) UNIQUE,
+emp_age INT CHECK (emp_age >=18),
+emp_country VARCHAR(20) DEFAULT 'IND',
+dep_id INT,
+FOREIGN KEY(dep_id)REFERENCES department(dep_id));
+
+
+INSERT INTO department VALUES(101,'Sales');
+INSERT INTO department VALUES(102,'Operations');
+INSERT INTO department VALUES(103,'Finance');
+INSERT INTO department VALUES(104,'I.T.');
+insert into department VALUES(105,'I.T.');
+
+
+SELECT * FROM department;
+
+
+INSERT INTO employee VALUES(1,'Farhan',234567891234,56,'IND',101);
+INSERT INTO employee VALUES(2,'Ayan Khan',456764328796,43,'USA',102);
+INSERT INTO employee VALUES(3,'Devansh',123456789124,22,'CAD',103);
+INSERT INTO employee VALUES(4,'N. Neha',345371964735,23,'UAI',104);
+
+SELECT * FROM employee;
+
+select * from employee e1 inner join employee e2 on e1.emp_id=e2.dep_id;
+
+select * from employee e1 left join employee e2 on e1.emp_id=e2.dep_id;
+
+select * from employee e1 right join employee e2 on e1.emp_id=e2.emp_id;
+
+select len('faizan tarique')-len(replace(replace('faizan tarique','a',''),'i',''));
+
